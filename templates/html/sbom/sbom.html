@@ -1,0 +1,121 @@
+{% extends 'common/base.html' %}
+{% block content %}
+{% load static %}
+<div id="content" class="p-2rem">
+    <div class="row">
+        <!-- BEGIN SBOM TABLE -->
+        <div class="col-xl-9">
+            <div class="card">
+                <div class="card-body" style="height: 807px;">
+                    <!-- BEGIN nav-tabs -->
+                    <ul class="nav nav-tabs nav-tabs-v2 sbom-nav-border h-40px">
+                        <li class="nav-item me-3"><a href="#CveList" class="cveList nav-link active p-2" data-bs-toggle="tab">CVE목록</a></li>
+                        <li class="nav-item me-3"><a href="#SbomList" class="sbomList nav-link p-2" data-bs-toggle="tab">SBOM목록</a></li>
+                    </ul>
+                    <!-- END nav-tabs -->
+                    <!-- BEGIN tab-content -->
+                    <div class="tab-content">
+                        <!-- BEGIN tab-pane_CVE가 탐지된 SBOM 목록 -->
+                        <div class="tab-pane fade show active" id="CveList">
+                            <div class="d-flex fw-bold fs-16px text-center pt-3">
+                                <span class="flex-grow-1">CVE가 탐지된 SBOM 목록</span>
+                            </div>
+                            <div class="sbomTable-container">
+                                <table id="cveInSbom_dataTable" class="table table-hover table-sm-se w-100 text-white text-opacity-100 sbom-table-fix fs-12px">
+                                    <thead class="table-active">
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">컴포넌트명</th>
+                                        <th scope="col">컴포넌트 버전</th>
+                                        <th scope="col">CVE ID</th>
+                                        <th scope="col">심각도</th>
+                                        <th scope="col">마지막 탐지일</th>
+                                        <th scope="col">Count</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END tab-pane_CVE가 탐지된 SBOM 목록 -->
+                        <!-- BEGIN tab-pane_SBOM 목록 -->
+                        <div class="tab-pane fade" id="SbomList">
+                            <div class="d-flex fw-bold fs-16px text-center pt-3">
+                                <span class="flex-grow-1">SBOM 목록</span>
+                            </div>
+                            <div class="sbomTable-container">
+                                <table id="sbom_dataTable" class="table table-hover table-sm-se w-100 text-white text-opacity-100 sbom-table-fix fs-12px">
+                                    <thead class="table-active">
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Packages Name</th>
+                                        <th scope="col">Packages Version</th>
+                                        <th scope="col">Packages Path</th>
+                                        <th scope="col">Packages Type</th>
+                                        <th scope="col">Count</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END tab-pane_SBOM 목록 -->
+                    </div>
+                </div>
+                <div class="card-arrow">
+                    <div class="card-arrow-top-left"></div>
+                    <div class="card-arrow-top-right"></div>
+                    <div class="card-arrow-bottom-left"></div>
+                    <div class="card-arrow-bottom-right"></div>
+                </div>
+            </div>
+        </div>
+        <!-- END SBOM TABLE -->
+        <!-- BEGIN SBOM Chart -->
+        <div class="col-xl-3">
+            <div class="card mb-3 sbomChart-container">
+                <div class="card-body">
+                    <div class="d-flex fw-bold small text-start">
+                        <span class="flex-grow-1">취약한 오픈소스를 가장 많이 보유한 자산 (상위 5개)</span>
+                    </div>
+                    <div class="w-100"><div id ="sbomBarChart"></div></div>
+                </div>
+                <div class="card-arrow">
+                    <div class="card-arrow-top-left"></div>
+                    <div class="card-arrow-top-right"></div>
+                    <div class="card-arrow-bottom-left"></div>
+                    <div class="card-arrow-bottom-right"></div>
+                </div>
+            </div>
+            <div class="card mb-3 sbomChart-container">
+                <div class="card-body">
+                    <div class="d-flex fw-bold small text-start mb-4">
+                        <span class="flex-grow-1">가장 많이 탐지된 취약 오픈소스 (상위 5개)</span>
+                    </div>
+                    <div class="w-100"><div id="sbom_pie"></div></div>
+                </div>
+                <div class="card-arrow">
+                    <div class="card-arrow-top-left"></div>
+                    <div class="card-arrow-top-right"></div>
+                    <div class="card-arrow-bottom-left"></div>
+                    <div class="card-arrow-bottom-right"></div>
+                </div>
+            </div>
+            <div class="card sbomChart-container">
+                <div class="card-body">
+                    <div class="d-flex fw-bold small text-start mb-3">
+                        <span class="flex-grow-1">취약 오픈소스가 탐지된 자산 수 추이 (최근 7일)</span>
+                    </div>
+                    <div class="w-100"><div id="sbom_line"></div></div>
+                </div>
+                <div class="card-arrow">
+                    <div class="card-arrow-top-left"></div>
+                    <div class="card-arrow-top-right"></div>
+                    <div class="card-arrow-bottom-left"></div>
+                    <div class="card-arrow-bottom-right"></div>
+                </div>
+            </div>
+        </div>
+        <!-- END SBOM Chart -->
+    </div>
+</div>
+{% endblock %}
+

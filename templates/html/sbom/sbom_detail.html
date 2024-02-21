@@ -1,0 +1,66 @@
+{% extends 'common/base.html' %}
+{% block content %}
+{% load static %}
+
+<div id="content">
+    <div class="row justify-content-sm-between py-4 px-10">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                <table id="sbom_detail_dataTable" class="table-sm-se w-100 text-white text-opacity-100" >
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Computer Name</th>
+                        <th>Ipv4 Address</th>
+                        <th style="text-align: center;">Packages Name</th>
+                        <th style="text-align: center;">Packages Version</th>
+                        <th style="text-align: center;">Packages Type</th>
+<!--                        <th>Packages Path</th>-->
+                        <th>Count</th>
+                    </tr>
+                    </thead>
+                    <tbody class="fs-12px">
+                        {% for data in chartData.detail_list %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>
+                                {{ data.cn }}
+                            </td>
+                            <td>
+                                {{ data.ip }}
+                            </td>
+                            <td style="text-align: center; word-break: break-all;">
+                                {{ data.pn }}
+                            </td>
+                            <td style="text-align: center; word-break: break-all;">
+                                {{ data.pv }}
+                            </td>
+                            <td style="text-align: center; word-break: break-all;">
+                                {{ data.type }}
+                            </td>
+<!--                            <td style="word-break: break-all;">-->
+<!--                                {{ data.parent }}-->
+<!--                            </td>-->
+                            <td style="text-align: center">
+                                {{ data.count }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-arrow">
+                    <div class="card-arrow-top-left"></div>
+                    <div class="card-arrow-top-right"></div>
+                    <div class="card-arrow-bottom-left"></div>
+                    <div class="card-arrow-bottom-right"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
